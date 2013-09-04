@@ -1,0 +1,20 @@
+{
+  "name": "start-game-dev-createjs",
+  "version": "0.1.0",
+  "description": "Starting gamedev with CreateJS",
+  "keywords": [
+    "createjs", "gamedev"
+  ],
+  "author": "I. Abiyasa Suhardi",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abiyasa/start-game-dev-createjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-connect": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.4"
+  }
+}
