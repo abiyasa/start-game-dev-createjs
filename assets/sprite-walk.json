@@ -1,0 +1,13 @@
+{
+  "images": ["assets/sprite-walk-74px.png"],
+  "frames": {
+    "width": 74,
+    "height": 64,
+    "count": 8,
+    "regX": 37,
+    "regY": 32
+  },
+  "animations": {
+    "walk": [0, 7, true, 3]
+  }
+}
