@@ -1,6 +1,4 @@
 .DS_Store
-.svn
-log/*.log
-tmp/**
-node_modules/
-.sass-cache
+npm-debug.log
+node_modules
+js/libs
