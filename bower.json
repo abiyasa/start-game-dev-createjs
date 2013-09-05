@@ -10,6 +10,8 @@
     "tests"
   ],
   "dependencies": {
-    "easeljs": "git://github.com/CreateJS/EaselJS.git#release_v0.6.1"
+    "easeljs": "git://github.com/CreateJS/EaselJS.git#release_v0.6.1",
+    "preloadjs": "git://github.com/CreateJS/PreloadJS.git#release_v0.3.1",
+    "soundjs": "git://github.com/CreateJS/SoundJS.git#release_v0.4.1"
   }
 }
