@@ -193,8 +193,64 @@ var myGame = myGame || {};
     }
 
     // check collision between ball and buildings
+    handleBuildingsCollision();
 
     stage.update();
+  };
+
+  // handle the collision between the ball and the buildings.
+  // will bounce the ball and remove the colliding buildings
+  var handleBuildingsCollision = function () {
+    var ballHit = false;
+    var numOfBuildings = buildings.length;
+    var i = 0;
+    var building;
+    while (!ballHit && (i < numOfBuildings)) {
+      building = buildings[i];
+
+      if (isCollide(building.x, building.y, buildingRadius, ball.x, ball.y, ballRadius)) {
+        ballHit = true;
+
+        // remove the building
+        buildings.splice(i, 1);
+        stage.removeChild(building);
+
+        // check which part of the buildings hit by the ball
+        // source: http://stackoverflow.com/questions/3309617/calculating-degrees-between-2-points-with-inverse-y-axis
+        var hitAngle = Math.atan2(ball.y - building.y, building.x - ball.x);
+        if (hitAngle < 0) {
+          hitAngle += 2 * Math.PI;
+        }
+        hitAngle = Math.floor(hitAngle * 180 / Math.PI);
+
+        // calculate bounce direction
+        var bounceX = -1, bounceY = -1;
+        if ((hitAngle >= 315) && (hitAngle < 45)) {
+            // from top
+            bounceX = 1;
+            bounceY = -1;
+        } else if ((hitAngle >= 45) && (hitAngle < 135)) {
+            // from left
+            bounceX = -1;
+            bounceY = 1;
+        } else if ((hitAngle >= 135) && (hitAngle < 225)) {
+            // from below
+            bounceX = 1;
+            bounceY = -1;
+        } else if ((hitAngle >= 225) && (hitAngle < 315)) {
+            // from right
+            bounceX = -1;
+            bounceY = 1;
+        }
+
+        // bounce the ball
+        ballSpeedX *= bounceX;
+        ballSpeedY *= bounceY;
+      }
+
+      // next building
+      i++;
+    }
   };
 
   // Check if two circle is colliding.
