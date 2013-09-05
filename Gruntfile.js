@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: ['js/*.js'],
+      files: ['step*/*.js'],
       options: {
         browser: true,
         undef: true,
