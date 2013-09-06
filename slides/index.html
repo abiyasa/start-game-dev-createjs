@@ -79,14 +79,14 @@
         <aside class="notes">
           Also explain the outlines.
 
-          CreateJS intro, its components, demo, and live coding!
+          CreateJS intro, its components, demo, and codes!
         </aside>
       </section>
 
       <section>
         <h2>What is CreateJS</h2>
+        <h3>http://www.createjs.com/</h3>
 
-        <p>http://www.createjs.com/</p>
         <p>Multimedia libraries &amp; tools</p>
 
         <aside class="notes">
@@ -137,6 +137,7 @@
           <li>Shape</li>
           <li>Text</li>
           <li>Animation</li>
+          <li>more...</li>
         </ul>
 
         <aside class="notes">
@@ -223,6 +224,16 @@ monster.gotoAndPlay('walk');
       <section>
         <h2>SoundJS</h2>
 
+        <pre><code data-trim>
+createjs.Sound.addEventListener('fileload', createjs.proxy(this.onFileLoaded, this));
+createjs.Sound.registerSound('assets/mySound.mp3|onFileLoaded/mySound.ogg', 'Badoom');
+
+function onFileLoaded(event) {
+  var instance = createjs.Sound.play('Badoom');
+  instance.setVolume(0.5);
+}
+        </code></pre>
+
         <aside class="notes">
           Show code snippet to play sound.
           SoundJS support multiple formats.
@@ -233,9 +244,43 @@ monster.gotoAndPlay('walk');
       <section>
         <h2>PreloadJS</h2>
 
-        <aside class="notes">
-          Show code snippet to load image and sound.
-        </aside>
+        <p>First, load all assets ...</p>
+        <pre><code data-trim>
+var preloader = new createjs.LoadQueue();
+preloader.installPlugin(createjs.Sound);
+preloader.addEventListener('complete', onAssetsLoaded);
+
+preloader.loadManifest([
+  { id: 'bgm-intro', src: 'assets/bgm01.mp3|assets/bgm01.ogg' },
+  { id: 'ball', src: 'assets/ball.jpg' },
+  { id: 'sprite-walk', src: 'assets/monster.png' }
+]);
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>PreloadJS</h2>
+
+        <p>... then use them!</p>
+
+        <pre><code data-trim>
+function onAssetsLoaded() {
+  createjs.Sound.play('bgm-intro');
+
+  var circle2 = new createjs.Bitmap(preloader.getResult('ball'));
+
+  var spriteSheet = new createjs.SpriteSheet({
+    images: [ preloader.getResult('sprite-walk') ],
+    frames: { width: 64, height:64, regX: 32, regY: 32 },
+    animations: {
+      walk: [0, 9, true, 4],
+      idle: [10, 20, true, 4]
+    }
+  };
+  var monster = new createjs.BitmapAnimation(spriteSheet);
+  monster.gotoAndPlay('walk');
+}
+        </code></pre>
       </section>
 
       <section>
