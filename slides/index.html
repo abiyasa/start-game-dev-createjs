@@ -48,7 +48,6 @@
         <h2>whoami</h2>
         <p>Call me <strong>Abi</strong></p>
         <ul>
-          <li>Programmer</li>
           <li>Game Development as hobby</li>
           <li>BASIC, Pascal, Assembler, C/C+,<br/>C#, J2ME, Android</li>
           <li>Flash Developer</li>
@@ -63,14 +62,13 @@
       <section>
         <h2>Outline</h2>
 
-        <ul>
-          <li>CreateJS introduction</li>
-          <li>CreateJS components</li>
-          <li>Demos</li>
-          <li>Live coding</li>
-        </ul>
+        <p>CreateJS introduction</p>
+        <p>CreateJS components</p>
+        <p><strong><code>Live coding</code></strong></p>
 
-        <p>Slides &amp samples source code are available at <br/>
+        <p>&nbsp;</p>
+
+        <p>Slides &amp; samples source code are available at <br/>
           <a href="https://github.com/abiyasa/start-game-dev-createjs">GitHub</a>
 
           or <a href="http://www.abiyasa.com">http://www.abiyasa.com</a>
@@ -84,147 +82,136 @@
       </section>
 
       <section>
-        <h2>What is CreateJS</h2>
-        <h3>http://www.createjs.com/</h3>
+        <h2>What is CreateJS?</h2>
 
-        <p>Multimedia libraries &amp; tools</p>
+        <img src="assets/createjs.png">
 
-        <aside class="notes">
-          CreateJS is a multimedia library. It's not a full game engine but it has all components
-          to start making (mainly 2D) HTML5 game.
-        </aside>
-      </section>
+        <p>JavaScript multimedia libraries &amp; tools</p>
 
-      <section>
-        <h2>CreateJS components</h2>
-
-        <p><strong>EaselJS</strong> <br> canvas, shape, image, animation</p>
-        <p><strong>SoundJS</strong> <br> pow! kaboom! zing!</p>
-        <p><strong>TweenJS</strong> <br> tweening animations</p>
-        <p><strong>PreloadJS</strong> <br> assets loading</p>
-        <p><strong>Tools</strong> <br> spritesheet &amp; vector exporters, ...</p>
+        <p>
+          <img src="assets/easeljs.png" width="100" height="100">
+          <img src="assets/soundjs.png" width="100" height="100">
+          <img src="assets/preloadjs.png" width="100" height="100">
+          <img src="assets/tweenjs.png" width="100" height="100">
+        </p>
 
         <aside class="notes">
           CreateJS is a multimedia library. It's not a full game engine but it has all components
           to start making (mainly 2D) HTML5 game.
-
-          Tools:
-          Node-easeljs, DrawScript for exporting vector from Illustrator, TypeScript support,
-          Photoshop spritesheet exporter.
         </aside>
       </section>
 
+      <!-- all about EaselJS -->
       <section>
-        <h2>Why CreateJS?</h2>
+        <section>
+          <h2>EaselJS</h2>
 
-        <ul>
-          <li>Free &amp; open source</li>
-          <li>Easy to use</li>
-          <li>Mobile/tablet support</li>
-          <li>Good documentation &amp; examples</li>
-          <li>Sponsored by Adobe &amp; Microsoft</li>
-          <li>CDN</li>
-        </ul>
-      </section>
+          <p><img src="assets/easeljs.png"></p>
 
-      <section>
-        <h2>EaselJS</h2>
+          <p>Easier 2D graphics in canvas</p>
+          <p>Bitmap, Shapes, Sprite Sheet</p>
+          <p>Animation</p>
+          <p>Text</p>
+          <p>Mouse &amp; Touch enabled</p>
 
-        <ul>
-          <li>Canvas</li>
-          <li>Sprite</li>
-          <li>SpriteSheet</li>
-          <li>Shape</li>
-          <li>Text</li>
-          <li>Animation</li>
-          <li>more...</li>
-        </ul>
+          <aside class="notes">
+            Explain important EaselJS components here...
+          </aside>
+        </section>
 
-        <aside class="notes">
-          Explain important EaselJS components here...
-        </aside>
-      </section>
+        <section>
+          <h2>EaselJS in action</h2>
 
-      <section>
-        <h2>EaselJS in action</h2>
+          <p>Draw a circle</p>
+          <pre><code data-trim>
+  var canvas = document.getElementById('main-canvas');
+  var stage = new createjs.Stage(canvas);
 
-        <p>Draw a circle</p>
-        <pre><code data-trim>
-var canvas = document.getElementById('main-canvas');
-var stage = new createjs.Stage(canvas);
+  var circle = new createjs.Shape();
+  circle.graphics.beginFill('#ff8080').drawCircle(0, 0, 40);
+  circle.x = 50;
+  circle.y = 150;
 
-var circle = new createjs.Shape();
-circle.graphics.beginFill('#ff8080').drawCircle(0, 0, 40);
-circle.x = 50;
-circle.y = 150;
+  stage.addChild(circle);
 
-stage.addChild(circle);
-
-// Update stage and render to the screen
-stage.update();
-        </code></pre>
-      </section>
-
-      <section>
-        <h2>EaselJS in action</h2>
-
-        <p>or load a bitmap</p>
-        <pre><code data-trim>
-var circle2 = new createjs.Bitmap('../assets/sphere.png');
-circle2.x = 250;
-circle2.y = 150;
-
-stage.addChild(circle2);
-
-stage.update();
-        </code></pre>
-      </section>
-
-      <section>
-        <h2>EaselJS in action</h2>
-
-        <p>Animation</p>
-        <pre><code data-trim>
-createjs.Ticker.addEventListener('tick', onTick);
-
-function onTick(event) {
-  if (!event.paused) {
-    var timeSinceLastTick = event.delta * 0.001;  // in seconds
-
-    // circle moves 10 pixel per second
-    circle2.x += 10 * timeSinceLastTick;
-  }
-
-  // re-draw after all updates
+  // Update stage and render to the screen
   stage.update();
-}
-        </code></pre>
-      </section>
+          </code></pre>
+        </section>
 
-      <section>
-        <h2>EaselJS in action</h2>
+        <section>
+          <h2>EaselJS in action</h2>
 
-        <p>Sprite Sheet</p>
-        <img src="assets/monster.png">
-        <pre><code data-trim>
-var spriteSheet = new createjs.SpriteSheet({
-  images: [ 'assets/monster.png' ],
-  frames: { width: 64, height:64, regX: 32, regY: 32 },
-  animations: {
-    walk: [0, 9, true, 4],
-    idle: [10, 20, true, 4]
+          <p>or load a bitmap</p>
+          <pre><code data-trim>
+  var circle2 = new createjs.Bitmap('../assets/sphere.png');
+  circle2.x = 250;
+  circle2.y = 150;
+
+  stage.addChild(circle2);
+
+  stage.update();
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>EaselJS in action</h2>
+
+          <p>Animation</p>
+          <pre><code data-trim>
+  createjs.Ticker.addEventListener('tick', onTick);
+
+  function onTick(event) {
+    if (!event.paused) {
+      var timeSinceLastTick = event.delta * 0.001;  // in seconds
+
+      // circle moves 10 pixel per second
+      circle2.x += 10 * timeSinceLastTick;
+    }
+
+    // re-draw after all updates
+    stage.update();
   }
-};
+          </code></pre>
+        </section>
 
-var monster = new createjs.BitmapAnimation(spriteSheet);
-monster.gotoAndPlay('walk');
-        </code></pre>
+        <section>
+          <h2>EaselJS in action</h2>
+
+          <p>Sprite Sheet</p>
+          <img src="assets/monster.png">
+          <pre><code data-trim>
+  var spriteSheet = new createjs.SpriteSheet({
+    images: [ 'assets/monster.png' ],
+    frames: { width: 64, height:64, regX: 32, regY: 32 },
+    animations: {
+      walk: [0, 9, true, 4],
+      idle: [10, 20, true, 4]
+    }
+  };
+
+  var monster = new createjs.BitmapAnimation(spriteSheet);
+  monster.gotoAndPlay('walk');
+          </code></pre>
+        </section>
+
       </section>
 
+      <!-- All about SoundsJS -->
       <section>
-        <h2>SoundJS</h2>
+        <section>
+          <h2>SoundJS</h2>
 
-        <pre><code data-trim>
+          <p><img src="assets/soundjs.png"></p>
+
+          <p>Sound FX or background music</p>
+          <p>Automatic Sound File loading</p>
+          <p>Detect Supported Formats</p>
+        </section>
+
+        <section>
+          <h2>Loading sound</h2>
+          <pre><code data-trim>
 createjs.Sound.addEventListener('fileload', createjs.proxy(this.onFileLoaded, this));
 createjs.Sound.registerSound('assets/mySound.mp3|onFileLoaded/mySound.ogg', 'Badoom');
 
@@ -232,20 +219,33 @@ function onFileLoaded(event) {
   var instance = createjs.Sound.play('Badoom');
   instance.setVolume(0.5);
 }
-        </code></pre>
+          </code></pre>
 
-        <aside class="notes">
-          Show code snippet to play sound.
-          SoundJS support multiple formats.
-          Will automatically preload sound files based on the supported format.
-        </aside>
+          <aside class="notes">
+            Show code snippet to play sound.
+            SoundJS support multiple formats.
+            Will automatically preload sound files based on the supported format.
+          </aside>
+        </section>
       </section>
 
+      <!-- All about PreloadJS -->
       <section>
-        <h2>PreloadJS</h2>
+        <section>
+          <h2>PreloadJS</h2>
 
-        <p>First, load all assets ...</p>
-        <pre><code data-trim>
+          <p><img src="assets/preloadjs.png"></p>
+
+          <p>Load images, sounds, JavaScript files</p>
+          <p>Use XHR2 <em>with fallback!</em></p>
+          <p>Loading Queues with Pause and Resume</p>
+        </section>
+
+        <section>
+          <h2>PreloadJS</h2>
+
+          <p>First, load all assets ...</p>
+          <pre><code data-trim>
 var preloader = new createjs.LoadQueue();
 preloader.installPlugin(createjs.Sound);
 preloader.addEventListener('complete', onAssetsLoaded);
@@ -255,52 +255,90 @@ preloader.loadManifest([
   { id: 'ball', src: 'assets/ball.jpg' },
   { id: 'sprite-walk', src: 'assets/monster.png' }
 ]);
-        </code></pre>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>PreloadJS</h2>
+
+          <p>... then use them!</p>
+
+          <pre><code data-trim>
+  function onAssetsLoaded() {
+    createjs.Sound.play('bgm-intro');
+
+    var circle2 = new createjs.Bitmap(preloader.getResult('ball'));
+
+    var spriteSheet = new createjs.SpriteSheet({
+      images: [ preloader.getResult('sprite-walk') ],
+      frames: { width: 64, height:64, regX: 32, regY: 32 },
+      animations: {
+        walk: [0, 9, true, 4],
+        idle: [10, 20, true, 4]
+      }
+    };
+    var monster = new createjs.BitmapAnimation(spriteSheet);
+    monster.gotoAndPlay('walk');
+  }
+          </code></pre>
+        </section>
       </section>
 
       <section>
-        <h2>PreloadJS</h2>
+        <h2>TweenJS &amp; Tools</h2>
 
-        <p>... then use them!</p>
+        <p>
+          <img src="assets/tweenjs.png">
+          <img src="assets/zoe.png">
+          </p>
 
-        <pre><code data-trim>
-function onAssetsLoaded() {
-  createjs.Sound.play('bgm-intro');
+        <p>Tweening animation, object properties, or CSS style</p>
 
-  var circle2 = new createjs.Bitmap(preloader.getResult('ball'));
+        <!--<p><img src="assets/zoe.png"></p>-->
 
-  var spriteSheet = new createjs.SpriteSheet({
-    images: [ preloader.getResult('sprite-walk') ],
-    frames: { width: 64, height:64, regX: 32, regY: 32 },
-    animations: {
-      walk: [0, 9, true, 4],
-      idle: [10, 20, true, 4]
-    }
-  };
-  var monster = new createjs.BitmapAnimation(spriteSheet);
-  monster.gotoAndPlay('walk');
-}
-        </code></pre>
-      </section>
+        <p>&nbsp;</p>
 
-      <section>
-        <h2>Projects using CreateJS</h2>
+        <p>Spritesheet tools</p>
+        <p>Adobe Photoshop, Flash, &amp; Illustrator exporters</p>
+        <p>Flash fallback for browser <em>without canvas</em></p>
 
         <aside class="notes">
-          More and more big projects using CreateJS: Atari, ...
-          show game projects here.. screenshots
+          Tools:
+          Node-easeljs, DrawScript for exporting vector from Illustrator, TypeScript support,
+          Photoshop spritesheet exporter.
+
+          We will not use this for the live code
+        </aside>
+      </section>
+
+      <section>
+        <h2>Why CreateJS?</h2>
+
+        <p>Has all components for game development</p>
+        <p>Free &amp; open source</p>
+        <p>Mobile/tablet support</p>
+        <p>Documentations &amp; examples</p>
+        <p>Sponsored by Adobe &amp; Microsoft</p>
+        <p>CDN</p>
+
+        <aside class="notes">
+          It's also minimalistic; you can easily
+          integrate it with other framework
         </aside>
       </section>
 
       <section>
         <h2>It's coding time!</h2>
+
+        <img src="assets/coding-time.jpg">
       </section>
 
       <section>
         <h2>Stop! Concept time!</h2>
 
+        <img src="assets/arkanoid.png">
+
         <aside class="notes">
-          Show sketch of our game.
           Arkanoid. with Godzilla.
         </aside>
       </section>
@@ -308,10 +346,9 @@ function onAssetsLoaded() {
       <section>
         <h1>Bonus stage!</h1>
 
-        <ul>
-          <li>Mobile/touch support</li>
-          <li>Game UI</li>
-        </ul>
+        <p>Mobile/touch support</p>
+        <p>Game UI</p>
+
         <aside class="notes">
           What you can do with the source code.
 
@@ -324,18 +361,30 @@ function onAssetsLoaded() {
       <section>
         <h1>Links</h1>
 
-        <ul>
-          <li>https://github.com/CreateJS/sandbox/tree/master/PlanetaryGary</li>
-          <li>http://sandbox.createjs.com/PlanetaryGary/</li>
-        </ul>
-        <aside class="notes">
-          Show links simple game from GSkinner.
-        </aside>
+        <p>
+          <strong>Slides</strong><br>
+          <a href="https://github.com/abiyasa/start-game-dev-createjs">
+            https://github.com/abiyasa/start-game-dev-createjs
+          </a>
+        </p>
+
+        <p>
+          <strong>CreateJS</strong><br>
+          <a href="http://www.createjs.com">http://www.createjs.com</a>
+        </p>
+
+        <p>
+          <strong>Planetary Gary</strong><br>
+          <a href="https://github.com/CreateJS/sandbox/tree/master/PlanetaryGary">
+            https://github.com/CreateJS/sandbox/tree/master/PlanetaryGary
+          </a>
+        </p>
       </section>
 
       <section>
-        <h1>Game over!</h1>
-        <h3>Continue Y/N</h3>
+        <h1>The end</h1>
+
+        <img src="assets/ending.jpg">
 
         <aside class="notes">
           That's it!
@@ -359,7 +408,7 @@ function onAssetsLoaded() {
       center: true,
 
       theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-      transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+      transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
       // Optional libraries used to extend on reveal.js
       dependencies: [
